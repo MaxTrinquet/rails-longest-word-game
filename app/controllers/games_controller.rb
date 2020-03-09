@@ -14,12 +14,12 @@ class GamesController < ApplicationController
     time = params[:start_time].to_time
     @attempt = params[:attempt]
     attempt_tested = JSON.parse(getting_url(@attempt))
-    raise
-    if included?(@attempt.upcase, @random_grid.count)
-      if attempt_tested['found'] == false
-        @result = not_found_english_word(time, end_time)
-      else
+
+    if included?(@attempt.upcase, params[:random_grid])
+      if attempt_tested['found']
         @result = found_existing_word(@attempt, time, end_time)
+      else
+        @result = not_found_english_word(time, end_time)
       end
     else
       @result = not_in_the_grid_word(time, end_time)
@@ -34,14 +34,22 @@ class GamesController < ApplicationController
   private
 
   def included?(attempt, grid)
-    attempt.chars.all? { |letter| attempt.count(letter) <= grid.count(letter) }
+    attempt_hash = {}
+    grid_hash = {}
+    attempt.chars.each do |letter|
+      attempt_hash[letter] = attempt_hash[letter] ? attempt_hash[letter] + 1 : 1
+    end
+    grid.chars.each do |letter|
+      grid_hash[letter] = grid_hash[letter] ? grid_hash[letter] + 1 : 1
+    end
+    attempt_hash.all? { |letter| attempt_hash[letter] == grid_hash[letter] }
   end
 
   def found_existing_word(attempt, start_time, end_time)
     attempt_sorted = attempt.upcase.split('').sort!
     { time: end_time - start_time,
       message: 'Well done',
-      score: attempt_sorted.length * 20 - (end_time - start_time) }
+      score: attempt_sorted.length * 200 - (end_time - start_time) }
   end
 
   def not_found_english_word(start_time, end_time)
