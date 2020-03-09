@@ -1,8 +1,12 @@
-<h1>Now your result </h1>
 
-<% %>
-<p>Your word is <%=@attempt%></p>
-<p>Time taken to answer : <%=@result[:time] %></p>
-<p>Your score is <%=@result[:score]%></p>
-<p>Message <%= @result[:message]%></p>
+<div class="container">
 
+<h1>Now your result !  </h1>
+
+<p class="world">Your word is <strong> <%=@attempt%> </strong> </p>
+<p class="message"><strong><%= @result[:message]%></strong></p>
+<p class="time">Time taken to answer : <strong><%=@result[:time] %></strong></p>
+<p class="score">Your score is <strong><%=@result[:score]%></strong></p>
+
+
+</div>

@@ -1,17 +1,21 @@
+
+
+<div class="container">
 <h1>Welcome to the longuest word-game ! </h1>
 
 
 <div class="new-game">
-<% @random_grid.each do |letter| %>
+    <% @random_grid.each do |letter| %>
     <div class="letters"> <%= letter %>
     </div>
    <% end %>
 </div>
 
 
-<form action="score" > What is your guess ?
+<form class="form" action="score" > What is your guess ?
   <input type="text" name="attempt">
   <input type="hidden" name="start_time" value="<%=@start_time%>">
   <input type="hidden" name="random_grid" value="<%= @random_grid %>">
   <input type="submit" value="submit">
 </form>
+</div>

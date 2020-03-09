@@ -5,14 +5,29 @@
 
 .new-game {
   display: flex;
-  width:60%;
-  align: center;
+  width:100%;
 }
-
 .letters{
   background-color: #1eb2a6;
   padding: 10px;
-  margin:5px;
+  margin: 5px auto;
   border-radius: 5px;
-  color : white
+  color : white;
+  margin: 20px auto;
+}
+.form {
+  text-align: center;
+  margin:20px;
+  bottom-padding:10px;
+}
+.container {
+  width:50%;
+  margin: 20px auto;
+  text-align: center;
+  background-color: #CDCDCD;
+  border-radius: 10px;
+  padding:20px;
+}
+.message{
+  font-size: 25px;
 }
